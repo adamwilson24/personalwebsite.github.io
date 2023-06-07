@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <h1>Adam Wilson</h1>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html"class="is-active">Contact</a>
+    </div>
+
+    <button class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    </div>
+  </nav>
+  <main>
+    <section class="section-contact">
+      <div class="contact-container">
+        <h1 id="contact-title">Contact me!</h1>
+        <p id="contact-paragraph">Fill out the form below to get in touch with me. I will get back to you as soon as possible!</p>
+        <form onsubmit="sendEmail(); reset(); return false;" id="contact-form" >
+          <div class = "form-group">
+            <label for="firstname">First name*</label>
+              <input 
+                type="text" 
+                name="firstname"  
+                id="firstname" 
+                required 
+                class="form-element"
+                placeholder="Adam"/>
+          </div>
+          <div class = "form-group">
+            <label for="lastname">Last name*</label>
+              <input 
+                type="text" 
+                name="lastname"  
+                id="lastname" 
+                required 
+                class="form-element"
+                placeholder="Wilson"/>
+          </div>
+          <div class = "form-group">
+            <label for="email">Email address*</label>
+              <input 
+                type="email" 
+                name="email"  
+                id="email" 
+                required 
+                class="form-element"
+                placeholder="adam.wilson@example.com"/>
+          </div>
+          <div class = "form-group">
+            <label for="company">Company</label>
+              <input 
+                type="company" 
+                name="company"  
+                id="company" 
+                class="form-element"
+                placeholder="Company name"/>
+          </div>
+          <div class="form-group full">
+            <label for="message">What are you looking for?</label>
+            <textarea name="message" id="message" class="form-element" placeholder="I want a website please..."></textarea>
+          </div>
+          <div class="submit-group">
+            <input type="submit" value="SEND MESSAGE" id="contact-submit-button"/>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    function sendEmail(){
+        Email.send({
+            Host : "smtp.elasticemail.com",
+            //using elastice email to host SMTP server
+            Username : "adamburner888@gmail.com",
+            Password : "4F940F3120E2FE24900B8C1DA496099F0F16",
+            To : 'wilsoada124@gmail.com',
+            From : 'wilsoada124@gmail.com',
+            Subject : "New Contact Form Enquiry",
+            Body : "Name: " + document.getElementById("firstname").value + " " + document.getElementById("lastname").value
+                + "<br> Email: " + document.getElementById("email").value
+                + "<br> Company: " + document.getElementById("company").value
+                + "<br> Message: " + document.getElementById("message").value,
+          }).then(function(message){
+            if(message=='OK'){
+              alert('Message sent!')
+            }
+            else{
+              alert(message)
+            }
+          })
+          
+    }
+  </script>
+</body>
+</html>
